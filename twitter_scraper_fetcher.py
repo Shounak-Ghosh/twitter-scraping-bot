@@ -12,13 +12,8 @@ TWITTER_URL = "https://twitter.com/"
 
 
 def get_elements(twitter_handle):
-    url = TWITTER_URL + twitter_handle
-    response = requests.get(url, headers={'User-Agent': AGENTS})
-    html = response.content
-
-    soup = BeautifulSoup(html, features="html.parser")
-
-    return soup.find_all(CONTENT_CONTAINER_TAGS, {"class": CONTENT_CLASS_NAME})
+  ## Nothing here yet!
+  pass
     
 def get_user_tweets(twitter_handle):
   ## Nothing here yet!
