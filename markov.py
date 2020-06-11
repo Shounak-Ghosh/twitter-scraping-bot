@@ -4,7 +4,6 @@ from mlh_twitter_api import get_user_tweets as fetch
 from twitter_scraper_fetcher import *
 import re
 
-# remove emoji, punctuation, urls from tweets
 def create_string(tweets):
     text = ""
 
