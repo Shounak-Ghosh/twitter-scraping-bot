@@ -20,19 +20,15 @@ def generate_message(body, methods=["POST"]):
   question = body["message"]
   twitter_handle = body["username"]
 
-  # Call get_user_tweets() from twitter_scraper_fetcher.py to scrape some tweets
-  tweets = get_user_tweets(twitter_handle)
-
   try:
-    # Get a random tweet from the list of tweets
-    single_tweet = random.choice(tweets)
-
     # Send the answer to the app, to display to the user
-    answer = {"username": twitter_handle, "message": moderate(bot_answer)}
-    socketio.emit("bot answer", answer)
+    bot_answer = generate_bot_answer(twitter_handle, question)
+    answer = {"username": twitter_handle, "message": bot_answer}
+    socketio.emit("bot answer", answer, room=request.sid)
   except:
     bot_answer = "Sorry, I couldn't process that. Try again please."
-    socketio.emit("error", {"username": twitter_handle, "message": moderate(bot_answer)})
+    error_message = {"username": twitter_handle, "message": bot_answer}
+    socketio.emit("error", error_message, room=request.sid)
 
 if __name__ == "__main__":
     socketio.run(app)
