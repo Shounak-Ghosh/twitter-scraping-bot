@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO
 from twitter_scraper_fetcher import *
+from markov_bot import generate_bot_answer
 import json
 import config
 import random
