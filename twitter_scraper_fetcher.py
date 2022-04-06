@@ -12,12 +12,16 @@ AGENTS= 'Nokia5310XpressMusic_CMCC/2.0 (10.10) Profile/MIDP-2.1 '\
 
 
 def get_elements(twitter_handle):
-  ## Nothing here yet!
-  pass
+  url = TWITTER_URL + twitter_handle
+  response = requests.get(url, headers={'User-Agent': AGENTS})
+  html = response.content
+
+  soup = BeautifulSoup(html, 'html.parser')
+  return soup.find_all(CONTENT_CONTAINER_TAGS, {'class': CONTENT_CLASS_NAME})
     
-def get_user_tweets(twitter_handle):
-  ## Nothing here yet!
-  pass
+def get_user_tweets(twitter_handle):\
+  elements = get_elements(twitter_handle)
+  
 
 def clean_tweets_data(tweets):
   ## Nothing here yet!
